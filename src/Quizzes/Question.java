@@ -11,6 +11,7 @@ public class Question {
 
     private List<String> answers;
 
+
     public Question(String questionText,
                     QuestionType questionType,
                     List<String> possibilities,
@@ -21,42 +22,32 @@ public class Question {
         this.questionType = questionType;
     }
 
+    public void questionPrint() {
 
-    public void questionPrint(String questionText, QuestionType type, List<String> possibilities) {
-        System.out.println(questionText);
+        System.out.println(questionText + " Question type: " + questionType);
+        int count = 0;
+        for (String possibility : possibilities) {
+            count++;
+            System.out.println(count + ". " + possibility);
+        }
 
     }
-
 
     public String getQuestionText() {
         return questionText;
-    }
-
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
     }
 
     public List<String> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(List<String> answers) {
-        this.answers = answers;
-    }
-
     public List<String> getPossibilities() {
         return possibilities;
-    }
-
-    public void setPossibilities(List<String> possibilities) {
-        this.possibilities = possibilities;
     }
 
     public QuestionType getQuestionType() {
         return questionType;
     }
 
-    public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType;
-    }
+
 }
