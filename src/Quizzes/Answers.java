@@ -12,18 +12,11 @@ public class Answers {
         this.isValid = isValid;
     }
 
-    boolean isValid() {
+    boolean getIsValid() {
         return isValid;
     }
 
     public String getAnswerText() {
         return answerText;
     }
-
-    public int getAnswerNumber() {
-        return  answerNumber;
-    }
-
-
-
 }

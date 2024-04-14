@@ -6,7 +6,6 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-
         List<Answers> answers1 = List.of(new Answers(1, "Greenland", true),
                 new Answers(2, "Iceland", false));
         Question question1 = new Question("What is the largest island in the world? Choose number.", QuestionType.SINGLE, answers1);

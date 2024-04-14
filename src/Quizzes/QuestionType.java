@@ -1,5 +1,5 @@
 package Quizzes;
 
 public enum QuestionType {
-    MULTIPLE, SINGLE
+    MULTIPLE, SINGLE;
 }

@@ -1,14 +1,17 @@
 package Quizzes;
 
-
 import java.util.List;
-
 
 public class Question {
 
     private QuestionType questionType;
     private String questionText;
     private List<Answers> answer;
+    private int answerPoints;
+
+    public int getAnswerPoints() {
+        return answerPoints;
+    }
 
     public Question(String questionText, QuestionType questionType, List<Answers> answers) {
         this.questionText = questionText;
@@ -35,33 +38,46 @@ public class Question {
         }
     }
 
-    public boolean checkAnswer(String playerAnswer) {
+    public int checkAnswer(String playerAnswer, Question question) {
         boolean isSame = true;
+        answerPoints = 0;
         String[] stringArray = playerAnswer.trim().split("\\s+");
 
 
-        for (int i = 0; i < stringArray.length; i++) {
+        for (String s : stringArray) {
+            try {
+                int playerNumbers = Integer.parseInt(s) - 1;
 
-            int[] playerNumbers = new int[stringArray.length];
-            playerNumbers[i] = Integer.parseInt(stringArray[i]);
-
-
-            for (int j = 0; j < playerNumbers.length; j++) {
-                try {
-                    if (!this.answer.get(j).isValid()) {
-                        isSame = false;
-                        System.out.println("You have not entered a answer number.");
-                        break;
-                    }
-
-                } catch (Exception e) {
+                if (stringArray.length >= 2 && questionType == QuestionType.SINGLE) {
+                    System.out.println("Invalid input. The question has only one answer");
                     isSame = false;
-                    System.out.println("Invalid input. Insert a answer number(s).");
-                }
-            }
-        }
-        return isSame;
+                    break;
 
+                }
+                if (!this.answer.get(playerNumbers).getIsValid()) {
+                    isSame = false;
+                    break;
+                }
+
+            } catch (Exception e) {
+                isSame = false;
+                System.out.println("Invalid input.");
+                break;
+
+            }
+            isSame = true;
+            answerPoints++;
+
+        }
+        return answerPoints;
     }
 
+    public void printRightAnswer(Answers answers) {
+        for (int i = 0; i < answer.size(); i++) {
+            if (answers.getIsValid()) {
+                System.out.println(answers.getAnswerText());
+                break;
+            }
+        }
+    }
 }
