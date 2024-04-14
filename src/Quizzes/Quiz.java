@@ -21,16 +21,20 @@ public class Quiz {
     }
 
     public void startQuiz(List<Question> questionsList) {
-        System.out.println("Welcome to geography quiz");
-        System.out.println("This quiz has " + questionsList.size() + " questions");
+        System.out.println("Welcome to " + name);
+        System.out.println("This quiz has " + questionsList.size() + " questions.");
         System.out.println();
 
         for (Question question : questions) {
+
             question.printQuestion();
+
             String playerAnswer = scanner.nextLine();
 
             question.checkAnswer(playerAnswer, question);
+
             this.pointCounter(question.getAnswerPoints());
+
             System.out.println("Right answer: ");
 
             for (Answers answers : question.getAnswer()) {

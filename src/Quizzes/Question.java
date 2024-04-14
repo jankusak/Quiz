@@ -1,5 +1,6 @@
 package Quizzes;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Question {
@@ -42,7 +43,7 @@ public class Question {
         boolean isSame = true;
         answerPoints = 0;
         String[] stringArray = playerAnswer.trim().split("\\s+");
-
+        HashSet<Integer> rightAnswers = new HashSet<>();
 
         for (String s : stringArray) {
             try {
@@ -52,22 +53,22 @@ public class Question {
                     System.out.println("Invalid input. The question has only one answer");
                     isSame = false;
                     break;
-
                 }
                 if (!this.answer.get(playerNumbers).getIsValid()) {
                     isSame = false;
                     break;
                 }
-
+                if (isSame) {
+                    if (!(rightAnswers.contains(playerNumbers))) {
+                        rightAnswers.add(playerNumbers);
+                        answerPoints++;
+                    }
+                }
             } catch (Exception e) {
                 isSame = false;
                 System.out.println("Invalid input.");
                 break;
-
             }
-            isSame = true;
-            answerPoints++;
-
         }
         return answerPoints;
     }
